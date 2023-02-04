@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrativ Central Library</title>
+    <link rel="stylesheet" href="index2-style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Content</a>
+        <a href="#">Contact</a>
+        <button id="btn">Search</button>
+        <input type="search" name="search" id="srh" placeholder="search" spellcheck="true">
+    </nav>
+
+    <div class="about">
+        <img src="image/logo.gif" width="150vw" height="90vh">
+        <p>User<br>Library.</p>
+    </div>
+
+    <div id="main">
+        <h1>CENTRAL LIBRABRY<br>BHUBANESWAR</h1>
+
+        <div class="user_details">
+            <fieldset>
+                <legend>User Details</legend>
+                <span>Name:- <span id="Uname"> Himansu</span></span>
+                <br>
+                <span>User Id:- <span id="Uid"> 2055019</span></span>
+            </fieldset>
+        </div>
+
+        <div id="contents">
+            <a href="#" class="books" id="aval-book" onclick="showBooktable()">
+                Available Books<br>In<br>The Library.
+            </a>
+            <a href="#" class="books" id="issue-book" onclick="issuebook()">
+                Issue<br>A<br>Book.
+            </a>
+            <a href="#" class="books" id="return-book" onclick="returnbook()">
+                Return<br>The<br>Book.
+            </a>
+        </div>
+    </div>
+    <input type="button" id="Exit" value="Log Out" onclick="exit()">
+
+    <script src="index2.js"></script>
+</body>
+</html>
