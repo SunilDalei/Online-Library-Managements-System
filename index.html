@@ -11,108 +11,110 @@
 </head>
 
 <body>
-    <div class="container">
-        <form action="">
-            <h1>WELLCOME TO<BR>CENTRAL LIBRARY</h1>
-            <hr>
-            <fieldset>
-                <legend>
-                    <h2> Authentication </h2>
-                </legend>
-                <p>
-                    Name: <input type="text" name="name" id="name" onblur="getname()" placeholder="XYZ" value=""
-                        spellcheck="false">
-                    <br>
-                    Login Id: <input type="text" name="loginId" id="loginId" onblur="getid()"
-                        placeholder="YY55000/YYYY000">
-                    <br>
-                    Password: <input type="password" id="password" onblur="getpass()" placeholder="1234">
-                </p>
-            </fieldset>
-            <input type="button" value="Login" onclick="submited()">
-        </form>
+    <div class="wrapper">
+        <div class="container">
+            <form action="">
+                <h1>WELLCOME TO<BR>CENTRAL LIBRARY</h1>
+                <hr>
+                <fieldset>
+                    <legend>
+                        <h2> Authentication </h2>
+                    </legend>
+                    <p>
+                        Name: <input type="text" name="name" id="name" onblur="getname()" placeholder="XYZ" value=""
+                            spellcheck="false">
+                        <br>
+                        Login Id: <input type="text" name="loginId" id="loginId" onblur="getid()"
+                            placeholder="YY55000/YYYY000">
+                        <br>
+                        Password: <input type="password" id="password" onblur="getpass()" placeholder="1234">
+                    </p>
+                </fieldset>
+                <input type="button" value="Login" onclick="submited()">
+            </form>
+        </div>
+        <script>
+    
+            let UIDs = [2055001, 2055002, 2055003, 2055004, 2055005, 2055006, 2055007, 2055008, 2055009, 2055010, 2055011, 2055012, 2055013, 2055014, 2055015, 2055016, 2055017, 2055018, 2055019, 2055020, 2055021, 2055022, 2055023, 2055024, 2055025, 2055026, 2055027, 2055028, 2055029, 2055030, 2055031, 2055032, 2055033, 2055034, 2055035, 2055036, 2055037, 2055038, 2055039, 2055040];
+            let AIDs = [2020001, 2020002, 2020003, 2020004, 2020005, 2020006, 2020007, 2020008, 2020009, 2020010];
+            let conform = false;
+            const U_pass = 1111;
+            const A_pass = 2222;
+            let pass, id, names = "";
+            if (localStorage.getItem('id') == null && localStorage.getItem('name') == null) {
+                /* To count no of book present in the library */
+                localStorage.setItem('noOfBooks', '5');
+                // to store name of all books in library present
+                localStorage.setItem('books', '[]');
+                // to count no of each book available in library
+                localStorage.setItem('availableBook', '[]');
+                //for storing the book issued details
+                localStorage.setItem('AdminIssuedBooks', '[[],[],[],[],[],[],[],[]]');
+                localStorage.setItem('UserIssuedBooks', '[[],[],[],[],[],[],[],[]]');
+    
+                let setbook = JSON.parse(localStorage.getItem('books'));
+                setbook.push("JAVA");
+                setbook.push("C");
+                setbook.push("C++");
+                setbook.push("PYTHON");
+                setbook.push("WEB-DEVELOPMENT");
+                localStorage.setItem('books', JSON.stringify(setbook));
+    
+                let setavailableBook = JSON.parse(localStorage.getItem('availableBook'));
+                setavailableBook.push("12");
+                setavailableBook.push("9");
+                setavailableBook.push("10");
+                setavailableBook.push("7");
+                setavailableBook.push("14");
+                localStorage.setItem('availableBook', JSON.stringify(setavailableBook));
+            }
+    
+            function getname() {
+                names = document.getElementById("name").value
+                localStorage.setItem('name', names);
+            }
+            function getid() {
+                id = document.getElementById("loginId").value;
+                localStorage.setItem('id', id);
+            }
+            function getpass() {
+                pass = document.getElementById("password").value;
+            }
+            function submited() {
+                if (names != "") {
+                    for (let index = 0; index < UIDs.length; index++) {
+                        let element = UIDs[index];
+                        if (element == id) {
+                            if (pass == U_pass) {
+                                pass = undefined;
+                                conform = true;
+                                location.replace("index2.html");
+                                break;
+                            }
+                        }
+                    }
+                    for (let index = 0; index < AIDs.length; index++) {
+                        let element = AIDs[index];
+                        if (element == id) {
+                            console.log(pass);
+                            if (pass == A_pass) {
+                                pass = undefined;
+                                conform = true;
+                                location.replace("index3.html");
+                                break;
+                            }
+                        }
+                    }
+                    if (conform == false) {
+                        alert("OOps...! You Entered Wrong Login Id or Password.\nTry Again !!!");
+                    }
+                }
+                else {
+                    alert("Please Enter All Details !!!");
+                }
+            }
+        </script>
     </div>
-    <script>
-
-        let UIDs = [2055001, 2055002, 2055003, 2055004, 2055005, 2055006, 2055007, 2055008, 2055009, 2055010, 2055011, 2055012, 2055013, 2055014, 2055015, 2055016, 2055017, 2055018, 2055019, 2055020, 2055021, 2055022, 2055023, 2055024, 2055025, 2055026, 2055027, 2055028, 2055029, 2055030, 2055031, 2055032, 2055033, 2055034, 2055035, 2055036, 2055037, 2055038, 2055039, 2055040];
-        let AIDs = [2020001, 2020002, 2020003, 2020004, 2020005, 2020006, 2020007, 2020008, 2020009, 2020010];
-        let conform = false;
-        const U_pass = 1111;
-        const A_pass = 2222;
-        let pass, id, names = "";
-        if (localStorage.getItem('id') == null && localStorage.getItem('name') == null) {
-            /* To count no of book present in the library */
-            localStorage.setItem('noOfBooks', '5');
-            // to store name of all books in library present
-            localStorage.setItem('books', '[]');
-            // to count no of each book available in library
-            localStorage.setItem('availableBook', '[]');
-            //for storing the book issued details
-            localStorage.setItem('AdminIssuedBooks', '[[],[],[],[],[],[],[],[]]');
-            localStorage.setItem('UserIssuedBooks', '[[],[],[],[],[],[],[],[]]');
-
-            let setbook = JSON.parse(localStorage.getItem('books'));
-            setbook.push("JAVA");
-            setbook.push("C");
-            setbook.push("C++");
-            setbook.push("PYTHON");
-            setbook.push("WEB-DEVELOPMENT");
-            localStorage.setItem('books', JSON.stringify(setbook));
-
-            let setavailableBook = JSON.parse(localStorage.getItem('availableBook'));
-            setavailableBook.push("12");
-            setavailableBook.push("9");
-            setavailableBook.push("10");
-            setavailableBook.push("7");
-            setavailableBook.push("14");
-            localStorage.setItem('availableBook', JSON.stringify(setavailableBook));
-        }
-
-        function getname() {
-            names = document.getElementById("name").value
-            localStorage.setItem('name', names);
-        }
-        function getid() {
-            id = document.getElementById("loginId").value;
-            localStorage.setItem('id', id);
-        }
-        function getpass() {
-            pass = document.getElementById("password").value;
-        }
-        function submited() {
-            if (names != "") {
-                for (let index = 0; index < UIDs.length; index++) {
-                    let element = UIDs[index];
-                    if (element == id) {
-                        if (pass == U_pass) {
-                            pass = undefined;
-                            conform = true;
-                            location.replace("index2.html");
-                            break;
-                        }
-                    }
-                }
-                for (let index = 0; index < AIDs.length; index++) {
-                    let element = AIDs[index];
-                    if (element == id) {
-                        console.log(pass);
-                        if (pass == A_pass) {
-                            pass = undefined;
-                            conform = true;
-                            location.replace("index3.html");
-                            break;
-                        }
-                    }
-                }
-                if (conform == false) {
-                    alert("OOps...! You Entered Wrong Login Id or Password.\nTry Again !!!");
-                }
-            }
-            else {
-                alert("Please Enter All Details !!!");
-            }
-        }
-    </script>
 </body>
 
 </html>
